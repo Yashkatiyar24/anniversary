@@ -82,6 +82,41 @@ function App() {
 
       </div>
 
+      {/* Beautiful Quote Section */}
+      <div className="px-4 py-16 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl border border-pink-200/50"></div>
+            <div className="relative px-8 py-12 sm:px-12 sm:py-16 text-center">
+              <div className="mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-rose-100 to-pink-100 rounded-full mb-4">
+                  <Heart className="w-8 h-8 text-rose-500 fill-current" />
+                </div>
+              </div>
+              
+              <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-light text-gray-800 leading-relaxed mb-8 italic">
+                "In all the world, there is no heart for me like yours. 
+                In all the world, there is no love for you like mine."
+              </blockquote>
+              
+              <div className="flex items-center justify-center gap-3 text-gray-600">
+                <div className="w-12 h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent"></div>
+                <span className="text-sm font-medium tracking-wider uppercase">Maya Angelou</span>
+                <div className="w-12 h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent"></div>
+              </div>
+              
+              <div className="mt-8 flex justify-center">
+                <div className="flex gap-2">
+                  <div className="w-2 h-2 bg-rose-300 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-pink-300 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
+                  <div className="w-2 h-2 bg-purple-300 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Footer Message */}
       <div className="bg-gradient-to-r from-rose-500 to-pink-600 px-4 py-12">
         <div className="max-w-4xl mx-auto text-center">
