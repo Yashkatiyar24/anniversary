@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Began in Tuition Became Us - Anniversary Celebration</title>
+    <meta name="description" content="A beautiful anniversary page celebrating what began in tuition and became us - our precious memories together">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #f3e8ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0 6rem;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(244, 114, 182, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .heart-main {
+            width: 4rem;
+            height: 4rem;
+            color: #f43f5e;
+            fill: currentColor;
+            animation: pulse 2s infinite;
+        }
+
+        .star-accent {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #fbbf24;
+            fill: currentColor;
+            position: absolute;
+            top: -0.5rem;
+            right: -0.5rem;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            background: linear-gradient(90deg, #e11d48, #ec4899, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1.125rem, 3vw, 1.5rem);
+            color: #374151;
+            margin-bottom: 1rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .anniversary-date {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #e11d48;
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-top: 1rem;
+        }
+
+        .calendar-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 4rem 0;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .camera-icon {
+            width: 2rem;
+            height: 2rem;
+            color: #ec4899;
+        }
+
+        .gallery-title h2 {
+            font-size: clamp(1.875rem, 5vw, 2.25rem);
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .gallery-subtitle {
+            font-size: 1.125rem;
+            color: #6b7280;
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            aspect-ratio: 1;
+            group: hover;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-heart {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            color: white;
+            fill: currentColor;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-heart {
+            opacity: 1;
+        }
+
+        /* Instructions Section */
+        .instructions {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba(244, 114, 182, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .instructions p {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #374151;
+        }
+
+        .instruction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .instruction-card {
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .instruction-card.local {
+            background: #fef2f2;
+        }
+
+        .instruction-card.online {
+            background: #f3e8ff;
+        }
+
+        .instruction-card h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .instruction-card.local h4 {
+            color: #991b1b;
+        }
+
+        .instruction-card.online h4 {
+            color: #6b21a8;
+        }
+
+        .instruction-card p {
+            font-size: 0.875rem;
+            text-align: left;
+            margin: 0;
+        }
+
+        .instruction-card code {
+            padding: 0.125rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .instruction-card.local code {
+            background: #fecaca;
+        }
+
+        .instruction-card.online code {
+            background: #ddd6fe;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(90deg, #f43f5e, #ec4899);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-hearts {
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-heart {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: white;
+            fill: currentColor;
+            animation: pulse 2s infinite;
+        }
+
+        .footer-heart:nth-child(2) { animation-delay: 0.2s; }
+        .footer-heart:nth-child(3) { animation-delay: 0.4s; }
+        .footer-heart:nth-child(4) { animation-delay: 0.6s; }
+        .footer-heart:nth-child(5) { animation-delay: 0.8s; }
+
+        .footer h3 {
+            font-size: clamp(1.5rem, 4vw, 1.875rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            font-size: 1.125rem;
+            color: #fce7f3;
+            line-height: 1.6;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+            
+            .gallery-section {
+                padding: 2rem 0;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .instructions {
+                padding: 1.5rem;
+            }
+            
+            .instruction-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <svg class="heart-main" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <svg class="star-accent" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                
+                <h1>What Began in Tuition Became Us</h1>
+                
+                <p>
+                    Celebrating another year of beautiful memories, endless laughter, and infinite love
+                </p>
+                
+                <div class="anniversary-date">
+                    <svg class="calendar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    <span>Happy Anniversary, My Love</span>
+                    <svg class="calendar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-header">
+                <div class="gallery-title">
+                    <svg class="camera-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                    <h2>Our Precious Moments</h2>
+                    <svg class="camera-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                </div>
+                <p class="gallery-subtitle">
+                    Every picture tells a story of our journey together
+                </p>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="photo-grid">
+                <!-- Replace these src URLs with your own photos -->
+                <div class="photo-item">
+                    <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop" alt="Memory 1">
+                    <div class="photo-overlay"></div>
+                    <svg class="photo-heart" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop" alt="Memory 2">
+                    <div class="photo-overlay"></div>
+                    <svg class="photo-heart" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.pexels.com/photos/1024994/pexels-photo-1024994.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop" alt="Memory 3">
+                    <div class="photo-overlay"></div>
+                    <svg class="photo-heart" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.pexels.com/photos/1024995/pexels-photo-1024995.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop" alt="Memory 4">
+                    <div class="photo-overlay"></div>
+                    <svg class="photo-heart" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.pexels.com/photos/1024996/pexels-photo-1024996.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop" alt="Memory 5">
+                    <div class="photo-overlay"></div>
+                    <svg class="photo-heart" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://images.pexels.com/photos/1024997/pexels-photo-1024997.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop" alt="Memory 6">
+                    <div class="photo-overlay"></div>
+                    <svg class="photo-heart" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <h3>💡 How to Add Your Photos</h3>
+                <p>Replace the placeholder images with your own precious memories:</p>
+                <div class="instruction-grid">
+                    <div class="instruction-card local">
+                        <h4>📁 Option 1: Local Files</h4>
+                        <p>
+                            Save your photos in the same folder as this HTML file and update the <code>src</code> attributes like: <code>src="your-photo.jpg"</code>
+                        </p>
+                    </div>
+                    <div class="instruction-card online">
+                        <h4>🌐 Option 2: Online URLs</h4>
+                        <p>
+                            Upload your photos to any image hosting service (Google Photos, Imgur, etc.) and replace the <code>src</code> URLs with your photo links
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-hearts">
+                <svg class="footer-heart" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <svg class="footer-heart" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <svg class="footer-heart" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <svg class="footer-heart" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <svg class="footer-heart" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+            </div>
+            <h3>Forever and Always</h3>
+            <p>
+                Here's to many more years of adventures, dreams, and endless love. 
+                You make every day brighter and every moment more beautiful.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
