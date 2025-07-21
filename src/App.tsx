@@ -1,16 +1,69 @@
 import React from 'react';
-import { Heart, Calendar, Camera, Star } from 'lucide-react';
+import { Heart, Calendar, Camera, Star, X, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
 
 function App() {
+  const [selectedPhoto, setSelectedPhoto] = React.useState<number | null>(null);
+  const [showCaption, setShowCaption] = React.useState<number | null>(null);
+
   // Using your local photos from the public folder
   const photos = [
-    '/1.jpeg',
-    '/2.jpeg', 
-    '/3.jpeg',
-    '/4.jpeg', // Add your 4th photo as 4.jpeg in the public folder
-    '/5.jpeg', // Add your 5th photo as 5.jpeg in the public folder
-    '/6.jpeg', // Add your 6th photo as 6.jpeg in the public folder
+    {
+      src: '/1.jpeg',
+      caption: 'Our First Adventure Together',
+      loveNote: 'This was the moment I knew you were special. Your smile lit up the entire room and my heart. 💕'
+    },
+    {
+      src: '/2.jpeg',
+      caption: 'Perfect Day, Perfect You',
+      loveNote: 'Every moment with you feels like a fairytale. You make ordinary days extraordinary just by being there. ✨'
+    },
+    {
+      src: '/3.jpeg',
+      caption: 'Laughter and Love',
+      loveNote: 'Your laugh is my favorite sound in the world. It fills my heart with so much joy and warmth. 🌟'
+    },
+    {
+      src: '/4.jpeg',
+      caption: 'Beautiful Memories',
+      loveNote: 'In this moment, I realized how lucky I am to have you by my side. You are my everything. 💖'
+    },
+    {
+      src: '/5.jpeg',
+      caption: 'Together Forever',
+      loveNote: 'With you, I have found my home, my peace, and my greatest love. Thank you for being you. 🏠'
+    },
+    {
+      src: '/6.jpeg',
+      caption: 'Our Love Story Continues',
+      loveNote: 'Every day with you is a new chapter in our beautiful love story. Here\'s to many more pages together. 📖'
+    }
   ];
+
+  const openLightbox = (index: number) => {
+    setSelectedPhoto(index);
+  };
+
+  const closeLightbox = () => {
+    setSelectedPhoto(null);
+  };
+
+  const nextPhoto = () => {
+    if (selectedPhoto !== null) {
+      setSelectedPhoto((selectedPhoto + 1) % photos.length);
+    }
+  };
+
+  const prevPhoto = () => {
+    if (selectedPhoto !== null) {
+      setSelectedPhoto(selectedPhoto === 0 ? photos.length - 1 : selectedPhoto - 1);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextPhoto();
+    if (e.key === 'ArrowLeft') prevPhoto();
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
@@ -63,17 +116,36 @@ function App() {
           {photos.map((photo, index) => (
             <div 
               key={index}
-              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
+              onClick={() => openLightbox(index)}
+              onMouseEnter={() => setShowCaption(index)}
+              onMouseLeave={() => setShowCaption(null)}
             >
               <div className="aspect-square relative">
                 <img
-                  src={photo}
+                  src={photo.src}
                   alt={`Memory ${index + 1}`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Love Note Icon */}
+                <div className="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <MessageCircle className="w-6 h-6 fill-current" />
+                </div>
+                
+                {/* Heart Icon */}
                 <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Heart className="w-6 h-6 fill-current" />
+                </div>
+                
+                {/* Photo Caption */}
+                <div className={`absolute bottom-4 left-4 right-4 text-white transition-all duration-300 ${
+                  showCaption === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+                }`}>
+                  <p className="text-sm font-medium bg-black/30 backdrop-blur-sm rounded-lg px-3 py-2">
+                    {photo.caption}
+                  </p>
                 </div>
               </div>
             </div>
@@ -81,6 +153,76 @@ function App() {
         </div>
 
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedPhoto !== null && (
+        <div 
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={closeLightbox}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 text-white hover:text-rose-300 transition-colors z-10"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          
+          {/* Navigation Buttons */}
+          <button
+            onClick={(e) => { e.stopPropagation(); prevPhoto(); }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-rose-300 transition-colors z-10"
+          >
+            <ChevronLeft className="w-8 h-8" />
+          </button>
+          
+          <button
+            onClick={(e) => { e.stopPropagation(); nextPhoto(); }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-rose-300 transition-colors z-10"
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
+          
+          {/* Main Content */}
+          <div 
+            className="max-w-4xl max-h-full flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Image */}
+            <div className="relative mb-6">
+              <img
+                src={photos[selectedPhoto].src}
+                alt={photos[selectedPhoto].caption}
+                className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
+              />
+            </div>
+            
+            {/* Caption and Love Note */}
+            <div className="text-center text-white max-w-2xl">
+              <h3 className="text-2xl font-bold mb-4 text-rose-200">
+                {photos[selectedPhoto].caption}
+              </h3>
+              
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="flex items-center justify-center mb-3">
+                  <Heart className="w-6 h-6 text-rose-400 fill-current mr-2" />
+                  <span className="text-rose-200 font-medium">Love Note</span>
+                  <Heart className="w-6 h-6 text-rose-400 fill-current ml-2" />
+                </div>
+                <p className="text-lg leading-relaxed italic">
+                  {photos[selectedPhoto].loveNote}
+                </p>
+              </div>
+              
+              <div className="mt-4 text-sm text-gray-300">
+                Photo {selectedPhoto + 1} of {photos.length}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Beautiful Quote Section */}
       <div className="px-4 py-16 sm:px-6 lg:px-8">
