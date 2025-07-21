@@ -2,14 +2,14 @@ import React from 'react';
 import { Heart, Calendar, Camera, Star } from 'lucide-react';
 
 function App() {
-  // Replace these placeholder URLs with your actual photos
+  // Using your local photos from the public folder
   const photos = [
-    'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop',
-    'https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop',
-    'https://images.pexels.com/photos/1024994/pexels-photo-1024994.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop',
-    'https://images.pexels.com/photos/1024995/pexels-photo-1024995.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop',
-    'https://images.pexels.com/photos/1024996/pexels-photo-1024996.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop',
-    'https://images.pexels.com/photos/1024997/pexels-photo-1024997.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop',
+    '/1.jpeg',
+    '/2.jpeg', 
+    '/3.jpeg',
+    '/4.jpeg', // Add your 4th photo as 4.jpeg in the public folder
+    '/5.jpeg', // Add your 5th photo as 5.jpeg in the public folder
+    '/6.jpeg', // Add your 6th photo as 6.jpeg in the public folder
   ];
 
   return (
