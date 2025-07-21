@@ -80,31 +80,6 @@ function App() {
           ))}
         </div>
 
-        {/* Add Photo Instructions */}
-        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-pink-200 shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-            💡 How to Add Your Photos
-          </h3>
-          <div className="text-gray-700 space-y-3">
-            <p className="text-center mb-6">
-              Replace the placeholder images with your own precious memories:
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-rose-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-rose-800 mb-2">📁 Option 1: Local Files</h4>
-                <p className="text-sm">
-                  Save your photos in the <code className="bg-rose-200 px-2 py-1 rounded">public</code> folder and update the URLs in the code like: <code className="bg-rose-200 px-2 py-1 rounded">'/your-photo.jpg'</code>
-                </p>
-              </div>
-              <div className="bg-purple-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-purple-800 mb-2">🌐 Option 2: Online URLs</h4>
-                <p className="text-sm">
-                  Upload your photos to any image hosting service and replace the URLs in the <code className="bg-purple-200 px-2 py-1 rounded">photos</code> array
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Footer Message */}
